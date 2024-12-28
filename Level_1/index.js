@@ -1,0 +1,1 @@
+require("./2_Mongoose_create/script");
