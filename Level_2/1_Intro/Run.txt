@@ -1,0 +1,157 @@
+MongoDB install
+MongoDB download link : (https://www.mongodb.com/try/download/community)
+
+Path variable declare
+
+>mongod --dbpath="C:\Program Files\MongoDB\Server\8.0\data\db"
+
+mongod-----------------(for run or start)
+
+
+
+
+
+===================================================================================================================================================================================================================
+MongoDB shell install
+MongoDB shell download link : (https://www.mongodb.com/try/download/shell)
+
+Path variable declare
+
+mongosh (for run command)
+
+ctrl + L-------------(Clear the terminal)
+
+
+
+
+
+
+===================================================================================================================================================================================================================
+Show database
+show dbs-----------------(For database list)
+
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+Create and drop database 
+use level_2_learning-----------------(will create database)
+
+db.drpDatabase()--------------(Delete the database)
+
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+Create and drop collection:
+db.createCollection( "users" , { size : 5242880byts , max:5000doc } )
+
+db.users.drop()--------------(Delete the tables)
+
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+Basic operations:
+db.products.insertOne( { name : "Harry Potter" , price : 30.00 } )-----------------(Insert one record)
+
+db.products.insertOne( { name : "Laptop" , price : 200.00 , description : "High end model" , details : { brand : "Lenova" , processor : "i11" , memory : "128gb" } } )-----------------(Insert one record with nested)
+
+db.products.findOne()----------------(Read one record)
+
+db.products.find()----------------(Read all record)
+
+
+
+
+===================================================================================================================================================================================================================
+CRUD:
+db.employee.insertOne( { name : "SivaKumar" , details : { position : "Developer" , salary : 50000 } } )
+
+db.employee.insertMany( [ { name : "Ragul" , details : { position : "Tester" , salary : 60000 } } , { name : "Karthick" , details : { position : "TL" , salary : 80000 } } ] )
+
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+db.employee.findOne()
+
+db.employee.findOne( { name : "Ragul" } )
+
+db.employee.find()
+
+db.employee.find( { "details.position" : "Developer" } )
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+db.employee.updateOne( { name : "SivaKumar" } , { $set : { "details.position" : "Senior Developer" } } )
+
+db.employee.updateMany( { "details.position" : "Tester" } , { $set : { "details.salary" : 70000 } } )
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+db.employee.deleteOne( { name : "Karthick" } )
+
+db.employee.deleteMany( { "details.position" : "Tester" } )
+
+
+
+
+
+===================================================================================================================================================================================================================
+QUERY IN ADVANCE:
+db.employee.find().toArray()-----------(get all large record)
+
+db.employee.find().forEach( (data)=>{ print(data) } )-----------(get all large record)
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+db.employee.find( {  } , { name : 1 , _id : 0} )
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+db.employee.find().limit(2)
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+db.employee.find().skip(1).limit(2)
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+db.employee.find().sort( { name : 1 } )
+db.employee.find().sort( { name : -1 } )
+
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+comparision Operator:
+db.employee.find( { "details.position" : { $eq : "Tester" } } )
+
+db.employee.find( { "details.position" : { $ne : "Tester" } } )
+
+db.employee.find( { "details.salary" : { $gt : 50000 } } )
+
+db.employee.find( { "details.salary" : { $gte : 50000 } } )
+
+db.employee.find( { "details.salary" : { $lt : 50000 } } )
+
+db.employee.find( { "details.salary" : { $lte : 50000 } } )
+
+db.employee.find( { "details.salary" : { $in : [ 50000 , 60000 ] } } )
+
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+Logical Operator
+db.employee.find( { $and : [ { "details.position" : { $eq : "Tester" } } , { "details.salary" : { $eq : 60000 } } ] } )
+
+db.employee.find( { $or : [ { "details.position" : { $eq : "Tester" } } , { "details.salary" : { $eq : 60000 } } ] } )
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+Evalution Operator:
+db.employee.find( { name : { $regex : "^J" , $option : "i" } } )
+
+db.employee.find( { $where : function(){ return this.name == "SivaKumar"; } } )
+
+
+
+===================================================================================================================================================================================================================
