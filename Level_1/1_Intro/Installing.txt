@@ -15,3 +15,5 @@ Step-6 : install mongodb and shell
 
 MongoDB download link : (https://www.mongodb.com/try/download/community)
 MongoDB shell download link : (https://www.mongodb.com/try/download/shell)
+
+>mongod --dbpath="C:\Program Files\MongoDB\Server\8.0\data\db"
