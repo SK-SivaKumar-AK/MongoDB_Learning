@@ -1,0 +1,15 @@
+{
+    _id: new ObjectId('676fd3bfe8d81899651c3d90'),
+    name: 'SivaKumar',
+    age: 30,
+    email: 'sk@gmail.com',
+    hobbies: [ 'coding', 'developing' ],
+    address: {
+      street: 'Chatram',
+      city: 'trichy',
+      _id: new ObjectId('676fd3bfe8d81899651c3d91')
+    },
+    createdAt: 2024-12-28T10:32:31.121Z,
+    updatedAt: 2024-12-28T10:32:31.122Z,
+    __v: 0
+  }

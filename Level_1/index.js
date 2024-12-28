@@ -1,1 +1,1 @@
-require("./2_Mongoose_create/script");
+require("./3_Mongoose_read/script");
