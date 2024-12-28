@@ -1,0 +1,17 @@
+Step-1 : mongodb.com
+
+Step-2 : Resource tab
+
+Step-3 : Launch and manage mongodb option
+
+Step-4 : MongoDb Maual option 
+
+Step-5 : Installation option 
+
+Step-6 : install mongodb and shell
+
+
+
+
+MongoDB download link : (https://www.mongodb.com/try/download/community)
+MongoDB shell download link : (https://www.mongodb.com/try/download/shell)
