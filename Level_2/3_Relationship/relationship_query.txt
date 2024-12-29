@@ -1,0 +1,30 @@
+use shop-----------(database)
+
+db.customer.insertMany( [ {name : "Siva"} , { name : "Kumar" } , { name : "babu" } ] )
+
+
+one to one:
+db.customer_phone.insertMany( [ {phone : 9874563210 , customer_id : ObjectId("67710c9b9759b884e04eeb86")} , {phone : 9874563211 , customer_id : ObjectId("67710c9b9759b884e04eeb87")} , {phone : 9874563212 , customer_id : ObjectId("67710c9b9759b884e04eeb88")} ] )
+
+db.customer.aggregate( [ { $lookup : { from : "customer_phone" , localField : "_id" , foreignField : "customer_id" , as : "customer_phone" } } ] )
+
+
+one to many:
+db.order.insertMany( [ {amount : 100 , customer_id : ObjectId("67710c9b9759b884e04eeb87")} , {amount : 500 , customer_id : ObjectId("67710c9b9759b884e04eeb87")} , {amount : 1000 , customer_id : ObjectId("67710c9b9759b884e04eeb87")} ] )
+
+db.customer.aggregate( [ { $lookup : { from : "order" , localField : "_id" , foreignField : "customer_id" , as : "customer_orders" } } ] )
+
+
+Many to many:
+
+db.products.insertMany( [ {name : "Mobile" } , {name : "lamp" } , {name : "Pencils" } ] )
+
+db.product_order.insertMany( [ {amount : 100 , customer_id : ObjectId("67710c9b9759b884e04eeb87") , product_ids : [ ObjectId("6771106d9759b884e04eeb8f") , ObjectId("6771106d9759b884e04eeb90") , ObjectId("6771106d9759b884e04eeb91") ] } , {amount : 500 , customer_id : ObjectId("67710c9b9759b884e04eeb87")} , {amount : 1000 , customer_id : ObjectId("67710c9b9759b884e04eeb87")} ] )
+
+db.product_order.aggregate( [ { $lookup : { from : "products" , localField : "product_ids" , foreignField : "_id" , as : "productItems" } } ] )
+
+
+db.product_order.update({ _id: ObjectId('6771122d9759b884e04eeb94') },{ $set: { product_ids: [ ObjectId('6771106d9759b884e04eeb8f') ] } })
+
+
+db.product_order.update({ _id: ObjectId('6771122d9759b884e04eeb93') },{ $set: { product_ids: [ ObjectId('6771106d9759b884e04eeb8f') ] } })
