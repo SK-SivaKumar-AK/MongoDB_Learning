@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{docTitle}}</title>
+</head>
+<body>
+    <h1>{{HeadingMessage}}</h1><br><br>
+    <h4>{{statusMessage}}</h4>
+    {{#if editData_count}}
+        <h3>Update Form</h3>
+        <form action="/updatebooks/{{editData._id}}" method="post">
+            <label for="">Title</label>
+            <input type="text" name="title" id="" value="{{editData.title}}">
+            <label for="">Author</label>
+            <input type="text" name="author" value="{{editData.author}}">
+            <input type="submit" name="" id="" value="Submit">
+        </form><br><br>
+    {{else}}
+        <h3>Create Form</h3>
+        <form action="/storebooks" method="post">
+            <label for="">Title</label>
+            <input type="text" name="title" id="">
+            <label for="">Author</label>
+            <input type="text" name="author">
+            <input type="submit" name="" id="" value="Submit">
+        </form><br><br>
+    {{/if}}
+    {{#if booksData_count}}
+        <ul>
+            {{#each booksData}}
+            <li>{{this.title}} - {{this.author}} <a href="/?id={{this._id}}">Edit</a><a href="/deletebooks/{{this._id}}" onclick="return confirm('Are You Sure to delete?')">Delete</a></li>
+            {{/each}}
+        </ul>
+    {{else}}
+        <p>No Data Available!</p>
+    {{/if}}
+</body>
+</html>

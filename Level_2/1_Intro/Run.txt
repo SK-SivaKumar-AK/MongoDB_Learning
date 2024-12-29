@@ -155,3 +155,5 @@ db.employee.find( { $where : function(){ return this.name == "SivaKumar"; } } )
 
 
 ===================================================================================================================================================================================================================
+
+db.books.insertMany( [ { title : "Harry Potter" , author : "JK Rowling" } , { title : "Twilight" , author : "Stephenie meyer" } ] )
